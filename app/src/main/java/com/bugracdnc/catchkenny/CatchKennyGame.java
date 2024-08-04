@@ -31,6 +31,7 @@ public class CatchKennyGame {
     }
 
     public void restart() {
+        pickRandomHandler.removeCallbacks(randomizer);
         Score = 0;
         start();
     }
@@ -44,7 +45,7 @@ public class CatchKennyGame {
     public void stop() {
         Running = false;
         hideAllClickables();
-        pickRandomHandler.removeCallbacks(this::pickRandomClickable);
+        pickRandomHandler.removeCallbacks(randomizer);
     }
 
     private void hideAllClickables() {
