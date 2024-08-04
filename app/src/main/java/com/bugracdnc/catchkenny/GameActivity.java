@@ -37,8 +37,9 @@ public class GameActivity extends AppCompatActivity {
         });
 
         initGlobals();
-
-        kenny = new CatchKennyGame(getStoredHighscore(sp), kennyImages, new CountDownTimer(timeDef * 1000L, 1000) {
+        int currentHighscore = getStoredHighscore(sp);
+        if(currentHighscore == HIGHSCORE_ERROR) currentHighscore = HIGHSCORE_DEF;
+        kenny = new CatchKennyGame(currentHighscore, kennyImages, new CountDownTimer(timeDef * 1000L, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 updateCountdownText(millisUntilFinished);
