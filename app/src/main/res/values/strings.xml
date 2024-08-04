@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Catch Kenny</string>
+    <string name="countdowntexttemp">countdownTextTemp</string>
+    <string name="kenny_image">kenny image</string>
+    <string name="scoretemp">scoreTemp</string>
+    <string name="game_s_over">Game\'s over!\nClick anywhere to restart</string>
+    <string name="highscoretemp">highscoreTemp</string>
+    <string name="restart">Restart Game!</string>
+    <string name="click_anywhere_nto_start_the_game">Click anywhere\nto start the game!</string>
+    <string name="new_highscore">New Highscore!</string>
+</resources>

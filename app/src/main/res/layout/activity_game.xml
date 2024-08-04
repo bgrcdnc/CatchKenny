@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".GameActivity">
+
+    <TextView
+        android:id="@+id/titleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/app_name"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/countdownTimerText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:gravity="center"
+        android:text="@string/countdowntexttemp"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleText" />
+
+    <GridLayout
+        android:id="@+id/gridLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintBottom_toTopOf="@+id/scoreText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/countdownTimerText">
+
+        <ImageView
+            android:id="@+id/kennyImage0"
+            android:layout_width="@dimen/kennyWidth"
+            android:layout_height="@dimen/kennyHeight"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_margin="15dp"
+            android:contentDescription="@string/kenny_image"
+            android:onClick="increaseScore"
+            app:srcCompat="@drawable/kenny" />
+
+        <ImageView
+            android:id="@+id/kennyImage1"
+            android:layout_width="@dimen/kennyWidth"
+            android:layout_height="@dimen/kennyHeight"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:layout_margin="15dp"
+            android:contentDescription="@string/kenny_image"
+            android:onClick="increaseScore"
+            app:srcCompat="@drawable/kenny" />
+
+        <ImageView
+            android:id="@+id/kennyImage2"
+            android:layout_width="@dimen/kennyWidth"
+            android:layout_height="@dimen/kennyHeight"
+            android:layout_row="0"
+            android:layout_column="2"
+            android:layout_margin="15dp"
+            android:contentDescription="@string/kenny_image"
+            android:onClick="increaseScore"
+            app:srcCompat="@drawable/kenny" />
+
+        <ImageView
+            android:id="@+id/kennyImage3"
+            android:layout_width="@dimen/kennyWidth"
+            android:layout_height="@dimen/kennyHeight"
+            android:layout_row="1"
+            android:layout_column="0"
+            android:layout_margin="15dp"
+            android:contentDescription="@string/kenny_image"
+            android:onClick="increaseScore"
+            app:srcCompat="@drawable/kenny" />
+
+        <ImageView
+            android:id="@+id/kennyImage4"
+            android:layout_width="@dimen/kennyWidth"
+            android:layout_height="@dimen/kennyHeight"
+            android:layout_row="1"
+            android:layout_column="1"
+            android:layout_margin="15dp"
+            android:contentDescription="@string/kenny_image"
+            android:onClick="increaseScore"
+            app:srcCompat="@drawable/kenny" />
+
+        <ImageView
+            android:id="@+id/kennyImage5"
+            android:layout_width="@dimen/kennyWidth"
+            android:layout_height="@dimen/kennyHeight"
+            android:layout_row="1"
+            android:layout_column="2"
+            android:layout_margin="15dp"
+            android:contentDescription="@string/kenny_image"
+            android:onClick="increaseScore"
+            app:srcCompat="@drawable/kenny" />
+
+        <ImageView
+            android:id="@+id/kennyImage6"
+            android:layout_width="@dimen/kennyWidth"
+            android:layout_height="@dimen/kennyHeight"
+            android:layout_row="2"
+            android:layout_column="0"
+            android:layout_margin="15dp"
+            android:contentDescription="@string/kenny_image"
+            android:onClick="increaseScore"
+            app:srcCompat="@drawable/kenny" />
+
+        <ImageView
+            android:id="@+id/kennyImage7"
+            android:layout_width="@dimen/kennyWidth"
+            android:layout_height="@dimen/kennyHeight"
+            android:layout_row="2"
+            android:layout_column="1"
+            android:layout_margin="15dp"
+            android:contentDescription="@string/kenny_image"
+            android:onClick="increaseScore"
+            app:srcCompat="@drawable/kenny" />
+
+        <ImageView
+            android:id="@+id/kennyImage8"
+            android:layout_width="@dimen/kennyWidth"
+            android:layout_height="@dimen/kennyHeight"
+            android:layout_row="2"
+            android:layout_column="2"
+            android:layout_margin="15dp"
+            android:contentDescription="@string/kenny_image"
+            android:onClick="increaseScore"
+            app:srcCompat="@drawable/kenny" />
+    </GridLayout>
+
+    <TextView
+        android:id="@+id/scoreText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="128dp"
+        android:text="@string/scoretemp"
+        android:textSize="32sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/highscore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="64dp"
+        android:text="@string/highscoretemp"
+        android:textSize="32sp"
+        android:textColor="@color/material_dynamic_neutral50"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
