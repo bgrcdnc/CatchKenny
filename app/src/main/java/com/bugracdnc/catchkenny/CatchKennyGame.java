@@ -1,5 +1,6 @@
 package com.bugracdnc.catchkenny;
 
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.View;
@@ -8,30 +9,45 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class CatchKennyGame {
     private final View[] Clickables;
-    private final Handler Handler;
-    private int Highscore, Score, DefaultTime = 15, RemainingTime;
+    private int Highscore, Score;
     private boolean Running;
-    private Runnable GameTicker;
+    CountDownTimer Timer;
+    private final Handler pickRandomHandler;
+    Runnable randomizer;
 
-    public CatchKennyGame(int highscore, View[] clickables, Runnable gameFinish, Runnable gameUpdates) {
+    public CatchKennyGame(int highscore, View[] clickables, CountDownTimer timer) {
         Highscore = highscore;
         Clickables = clickables;
-        Handler = new Handler(Looper.getMainLooper());
-        GameTicker = () -> {
-            RemainingTime--;
-            if (RemainingTime == -1) {
-                Running = false;
-                gameFinish.run();
-            } else {
-                pickRandomClickable();
-                gameUpdates.run();
-                Handler.postDelayed(GameTicker, 1000);
-            }
-        };
+        Timer = timer;
+        pickRandomHandler = new Handler(Looper.getMainLooper());
+        randomizer = this::pickRandomClickable;
+    }
+
+    public void incScore() {
+        pickRandomHandler.removeCallbacks(randomizer);
+        Score++;
+        pickRandomClickable();
+    }
+
+    public void restart() {
+        Score = 0;
+        start();
+    }
+
+    public void start() {
+        Running = true;
+        Timer.start();
+        pickRandomClickable();
+    }
+
+    public void stop() {
+        Running = false;
+        hideAllClickables();
+        pickRandomHandler.removeCallbacks(this::pickRandomClickable);
     }
 
     private void hideAllClickables() {
-        for(View v:Clickables) {
+        for (View v : Clickables) {
             v.setVisibility(View.INVISIBLE);
         }
     }
@@ -39,27 +55,7 @@ public class CatchKennyGame {
     private void pickRandomClickable() {
         hideAllClickables();
         Clickables[ThreadLocalRandom.current().nextInt(0, 9)].setVisibility(View.VISIBLE);
-    }
-
-    public void incScore() {
-        Score++;
-    }
-
-    public void restart() {
-        RemainingTime = DefaultTime;
-        Score = 0;
-        start();
-    }
-
-    public void start() {
-        Running = true;
-        Handler.post(GameTicker);
-    }
-
-    public void stop() {
-        Running = false;
-        hideAllClickables();
-        Handler.removeCallbacks(GameTicker);
+        pickRandomHandler.postDelayed(randomizer, 1000);
     }
 
     public boolean isRunning() {
@@ -76,13 +72,5 @@ public class CatchKennyGame {
 
     public int getScore() {
         return Score;
-    }
-
-    public void setDefaultTime(int defaultTime) {
-        DefaultTime = defaultTime;
-    }
-
-    public int getRemainingTime() {
-        return RemainingTime;
     }
 }

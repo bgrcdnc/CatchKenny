@@ -3,11 +3,13 @@ package com.bugracdnc.catchkenny;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -21,6 +23,7 @@ public class GameActivity extends AppCompatActivity {
     ImageView[] kennyImages;
     SharedPreferences sp;
     CatchKennyGame kenny;
+    int timeDef = 15;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +36,38 @@ public class GameActivity extends AppCompatActivity {
             return insets;
         });
 
+        initGlobals();
+
+        kenny = new CatchKennyGame(getStoredHighscore(sp), kennyImages, new CountDownTimer(timeDef * 1000L, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                updateCountdownText(millisUntilFinished);
+            }
+
+            @Override
+            public void onFinish() {
+                updateHighscoreText();
+                updateScoreText();
+                kenny.stop();
+                Intent toGameOver = new Intent(GameActivity.this, GameOverActivity.class);
+                toGameOver.putExtra("score", kenny.getScore());
+                toGameOver.putExtra("highscore", kenny.getHighscore());
+                startActivity(toGameOver);
+            }
+        });
+
+        highscoreText.setText(String.format(Locale.getDefault(), "Highscore: %s", kenny.getHighscore()));
+
+        kenny.start();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        restartGame();
+    }
+
+    private void initGlobals() {
         countdownText = findViewById(R.id.countdownTimerText);
         scoreText = findViewById(R.id.scoreText);
         highscoreText = findViewById(R.id.highscore);
@@ -49,35 +84,14 @@ public class GameActivity extends AppCompatActivity {
         kennyImages[8] = findViewById(R.id.kennyImage8);
 
         sp = getPreferences(MODE_PRIVATE);
-
-        kenny = new CatchKennyGame(getStoredHighscore(sp), kennyImages, this::finishGame, this::updateCountdownText);
-        highscoreText.setText(String.format(Locale.getDefault(), "Highscore: %s", kenny.getHighscore()));
-
-        restartGame();
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        restartGame();
-    }
-
-    public void restartGame() {
+    private void restartGame() {
         if (!kenny.isRunning()) {
             kenny.restart();
             updateScoreText();
             updateHighscoreText();
         }
-    }
-
-    public void finishGame() {
-        updateHighscoreText();
-        updateScoreText();
-        kenny.stop();
-        Intent toGameOver = new Intent(this, GameOverActivity.class);
-        toGameOver.putExtra("score", kenny.getScore());
-        toGameOver.putExtra("highscore", kenny.getHighscore());
-        startActivity(toGameOver);
     }
 
     private void checkHighscore() {
@@ -110,19 +124,20 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
-    private void updateText(TextView tv, String format, int val) {
+    private void updateText(@NonNull TextView tv, String format, int val) {
         tv.setText(String.format(Locale.getDefault(), format, val));
     }
 
-    private void updateCountdownText() {
-        updateText(countdownText, "Time Left: %ds", kenny.getRemainingTime()+1);
+    private void updateCountdownText(long millisUntilFinished) {
+        updateText(countdownText, "Time Left: %ds", (int) (millisUntilFinished / 1000));
     }
 
-    public void updateScoreText() {
+    private void updateScoreText() {
         updateText(scoreText, "Score: %d", kenny.getScore());
     }
 
     private void updateHighscoreText() {
         updateText(highscoreText, "Highscore: %d", kenny.getHighscore());
     }
+
 }
