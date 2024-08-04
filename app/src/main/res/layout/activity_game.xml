@@ -31,116 +31,110 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleText" />
 
-    <GridLayout
-        android:id="@+id/gridLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ImageView
+        android:id="@+id/kennyImage0"
+        android:layout_width="@dimen/kennyWidth"
+        android:layout_height="@dimen/kennyHeight"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="64dp"
+        android:contentDescription="@string/kenny_image"
+        android:onClick="increaseScore"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/countdownTimerText"
+        app:srcCompat="@drawable/kenny"
+        tools:ignore="DuplicateSpeakableTextCheck" />
+
+    <ImageView
+        android:id="@+id/kennyImage1"
+        android:layout_width="@dimen/kennyWidth"
+        android:layout_height="@dimen/kennyHeight"
+        android:contentDescription="@string/kenny_image"
+        android:onClick="increaseScore"
+        app:layout_constraintEnd_toStartOf="@+id/kennyImage2"
+        app:layout_constraintStart_toEndOf="@+id/kennyImage0"
+        app:layout_constraintTop_toTopOf="@+id/kennyImage0"
+        app:srcCompat="@drawable/kenny" />
+
+    <ImageView
+        android:id="@+id/kennyImage2"
+        android:layout_width="@dimen/kennyWidth"
+        android:layout_height="@dimen/kennyHeight"
+        android:layout_marginEnd="32dp"
+        android:contentDescription="@string/kenny_image"
+        android:onClick="increaseScore"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/kennyImage1"
+        app:srcCompat="@drawable/kenny" />
+
+    <ImageView
+        android:id="@+id/kennyImage3"
+        android:layout_width="@dimen/kennyWidth"
+        android:layout_height="@dimen/kennyHeight"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:layout_marginBottom="32dp"
-        app:layout_constraintBottom_toTopOf="@+id/scoreText"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:contentDescription="@string/kenny_image"
+        android:onClick="increaseScore"
+        app:layout_constraintBottom_toTopOf="@+id/kennyImage6"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/countdownTimerText">
+        app:layout_constraintTop_toBottomOf="@+id/kennyImage0"
+        app:srcCompat="@drawable/kenny" />
 
-        <ImageView
-            android:id="@+id/kennyImage0"
-            android:layout_width="@dimen/kennyWidth"
-            android:layout_height="@dimen/kennyHeight"
-            android:layout_row="0"
-            android:layout_column="0"
-            android:layout_margin="15dp"
-            android:contentDescription="@string/kenny_image"
-            android:onClick="increaseScore"
-            app:srcCompat="@drawable/kenny" />
+    <ImageView
+        android:id="@+id/kennyImage4"
+        android:layout_width="@dimen/kennyWidth"
+        android:layout_height="@dimen/kennyHeight"
+        android:contentDescription="@string/kenny_image"
+        android:onClick="increaseScore"
+        app:layout_constraintEnd_toStartOf="@+id/kennyImage5"
+        app:layout_constraintStart_toEndOf="@+id/kennyImage3"
+        app:layout_constraintTop_toTopOf="@+id/kennyImage3"
+        app:srcCompat="@drawable/kenny" />
 
-        <ImageView
-            android:id="@+id/kennyImage1"
-            android:layout_width="@dimen/kennyWidth"
-            android:layout_height="@dimen/kennyHeight"
-            android:layout_row="0"
-            android:layout_column="1"
-            android:layout_margin="15dp"
-            android:contentDescription="@string/kenny_image"
-            android:onClick="increaseScore"
-            app:srcCompat="@drawable/kenny" />
+    <ImageView
+        android:id="@+id/kennyImage5"
+        android:layout_width="@dimen/kennyWidth"
+        android:layout_height="@dimen/kennyHeight"
+        android:layout_marginEnd="32dp"
+        android:contentDescription="@string/kenny_image"
+        android:onClick="increaseScore"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/kennyImage4"
+        app:srcCompat="@drawable/kenny" />
 
-        <ImageView
-            android:id="@+id/kennyImage2"
-            android:layout_width="@dimen/kennyWidth"
-            android:layout_height="@dimen/kennyHeight"
-            android:layout_row="0"
-            android:layout_column="2"
-            android:layout_margin="15dp"
-            android:contentDescription="@string/kenny_image"
-            android:onClick="increaseScore"
-            app:srcCompat="@drawable/kenny" />
+    <ImageView
+        android:id="@+id/kennyImage6"
+        android:layout_width="@dimen/kennyWidth"
+        android:layout_height="@dimen/kennyHeight"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="64dp"
+        android:contentDescription="@string/kenny_image"
+        android:onClick="increaseScore"
+        app:layout_constraintBottom_toTopOf="@+id/scoreText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/kenny" />
 
-        <ImageView
-            android:id="@+id/kennyImage3"
-            android:layout_width="@dimen/kennyWidth"
-            android:layout_height="@dimen/kennyHeight"
-            android:layout_row="1"
-            android:layout_column="0"
-            android:layout_margin="15dp"
-            android:contentDescription="@string/kenny_image"
-            android:onClick="increaseScore"
-            app:srcCompat="@drawable/kenny" />
+    <ImageView
+        android:id="@+id/kennyImage7"
+        android:layout_width="@dimen/kennyWidth"
+        android:layout_height="@dimen/kennyHeight"
+        android:contentDescription="@string/kenny_image"
+        android:onClick="increaseScore"
+        app:layout_constraintEnd_toStartOf="@+id/kennyImage8"
+        app:layout_constraintStart_toEndOf="@+id/kennyImage6"
+        app:layout_constraintTop_toTopOf="@+id/kennyImage6"
+        app:srcCompat="@drawable/kenny" />
 
-        <ImageView
-            android:id="@+id/kennyImage4"
-            android:layout_width="@dimen/kennyWidth"
-            android:layout_height="@dimen/kennyHeight"
-            android:layout_row="1"
-            android:layout_column="1"
-            android:layout_margin="15dp"
-            android:contentDescription="@string/kenny_image"
-            android:onClick="increaseScore"
-            app:srcCompat="@drawable/kenny" />
-
-        <ImageView
-            android:id="@+id/kennyImage5"
-            android:layout_width="@dimen/kennyWidth"
-            android:layout_height="@dimen/kennyHeight"
-            android:layout_row="1"
-            android:layout_column="2"
-            android:layout_margin="15dp"
-            android:contentDescription="@string/kenny_image"
-            android:onClick="increaseScore"
-            app:srcCompat="@drawable/kenny" />
-
-        <ImageView
-            android:id="@+id/kennyImage6"
-            android:layout_width="@dimen/kennyWidth"
-            android:layout_height="@dimen/kennyHeight"
-            android:layout_row="2"
-            android:layout_column="0"
-            android:layout_margin="15dp"
-            android:contentDescription="@string/kenny_image"
-            android:onClick="increaseScore"
-            app:srcCompat="@drawable/kenny" />
-
-        <ImageView
-            android:id="@+id/kennyImage7"
-            android:layout_width="@dimen/kennyWidth"
-            android:layout_height="@dimen/kennyHeight"
-            android:layout_row="2"
-            android:layout_column="1"
-            android:layout_margin="15dp"
-            android:contentDescription="@string/kenny_image"
-            android:onClick="increaseScore"
-            app:srcCompat="@drawable/kenny" />
-
-        <ImageView
-            android:id="@+id/kennyImage8"
-            android:layout_width="@dimen/kennyWidth"
-            android:layout_height="@dimen/kennyHeight"
-            android:layout_row="2"
-            android:layout_column="2"
-            android:layout_margin="15dp"
-            android:contentDescription="@string/kenny_image"
-            android:onClick="increaseScore"
-            app:srcCompat="@drawable/kenny" />
-    </GridLayout>
+    <ImageView
+        android:id="@+id/kennyImage8"
+        android:layout_width="@dimen/kennyWidth"
+        android:layout_height="@dimen/kennyHeight"
+        android:layout_marginEnd="32dp"
+        android:contentDescription="@string/kenny_image"
+        android:onClick="increaseScore"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/kennyImage6"
+        app:srcCompat="@drawable/kenny" />
 
     <TextView
         android:id="@+id/scoreText"
