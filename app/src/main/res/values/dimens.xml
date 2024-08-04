@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="kennyWidth">120dp</dimen>
-    <dimen name="kennyHeight">140dp</dimen>
+    <dimen name="kennyWidth">100dp</dimen>
+    <dimen name="kennyHeight">120dp</dimen>
 </resources>
