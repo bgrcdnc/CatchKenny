@@ -106,20 +106,18 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void setHighscore(int s, SharedPreferences sharedPref) {
-        kenny.setHighscore(s);
-        if (sharedPref != null)
-            sharedPref.edit().putInt("highscore", kenny.getHighscore()).apply();
+        if (kenny != null) {
+            kenny.setHighscore(s);
+            if (sharedPref != null) {
+                sharedPref.edit().putInt("highscore", kenny.getHighscore()).apply();
+            }
+        }
     }
 
-    private int getStoredHighscore(SharedPreferences sharedPref) {
-        if (sharedPref == null) {
-            sharedPref = getPreferences(MODE_PRIVATE);
-        }
-
+    private int getStoredHighscore(@NonNull SharedPreferences sharedPref) {
         if (sharedPref.contains("highscore")) {
             return sharedPref.getInt("highscore", HIGHSCORE_DEF);
         } else {
-            setHighscore(HIGHSCORE_DEF, sharedPref);
             return HIGHSCORE_DEF;
         }
     }
