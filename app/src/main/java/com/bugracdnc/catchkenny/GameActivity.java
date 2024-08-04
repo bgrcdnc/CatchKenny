@@ -18,7 +18,7 @@ import androidx.core.view.WindowInsetsCompat;
 import java.util.Locale;
 
 public class GameActivity extends AppCompatActivity {
-    final int HIGHSCORE_ERROR = -1, HIGHSCORE_DEF = 0;
+    final int HIGHSCORE_DEF = 0;
     TextView countdownText, scoreText, highscoreText;
     ImageView[] kennyImages;
     SharedPreferences sp;
@@ -37,9 +37,8 @@ public class GameActivity extends AppCompatActivity {
         });
 
         initGlobals();
-        int currentHighscore = getStoredHighscore(sp);
-        if(currentHighscore == HIGHSCORE_ERROR) currentHighscore = HIGHSCORE_DEF;
-        kenny = new CatchKennyGame(currentHighscore, kennyImages, new CountDownTimer(timeDef * 1000L, 1000) {
+
+        kenny = new CatchKennyGame(getStoredHighscore(sp), kennyImages, new CountDownTimer(timeDef * 1000L, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 updateCountdownText(millisUntilFinished);
@@ -113,12 +112,16 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private int getStoredHighscore(SharedPreferences sharedPref) {
-        if (sharedPref != null) {
-            if (sharedPref.contains("highscore")) {
-                return sharedPref.getInt("highscore", HIGHSCORE_DEF);
-            }
+        if (sharedPref == null) {
+            sharedPref = getPreferences(MODE_PRIVATE);
         }
-        return HIGHSCORE_ERROR;
+
+        if (sharedPref.contains("highscore")) {
+            return sharedPref.getInt("highscore", HIGHSCORE_DEF);
+        } else {
+            setHighscore(HIGHSCORE_DEF, sharedPref);
+            return HIGHSCORE_DEF;
+        }
     }
 
     public void increaseScore(View view) {
