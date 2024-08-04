@@ -14,6 +14,7 @@ public class CatchKennyGame {
     CountDownTimer Timer;
     private final Handler pickRandomHandler;
     Runnable randomizer;
+    int visible = 0;
 
     public CatchKennyGame(int highscore, View[] clickables, CountDownTimer timer) {
         Highscore = highscore;
@@ -54,7 +55,10 @@ public class CatchKennyGame {
 
     private void pickRandomClickable() {
         hideAllClickables();
-        Clickables[ThreadLocalRandom.current().nextInt(0, 9)].setVisibility(View.VISIBLE);
+        int rand = ThreadLocalRandom.current().nextInt(0, 9);
+        while(rand == visible) { rand = ThreadLocalRandom.current().nextInt(0, 9); }
+        visible = rand;
+        Clickables[visible].setVisibility(View.VISIBLE);
         pickRandomHandler.postDelayed(randomizer, 1000);
     }
 

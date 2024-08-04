@@ -56,8 +56,7 @@ public class GameActivity extends AppCompatActivity {
             }
         });
 
-        highscoreText.setText(String.format(Locale.getDefault(), "Highscore: %s", kenny.getHighscore()));
-
+        draw();
         kenny.start();
     }
 
@@ -65,6 +64,11 @@ public class GameActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         restartGame();
+    }
+
+    private void draw() {
+        updateScoreText();
+        updateHighscoreText();
     }
 
     private void initGlobals() {
